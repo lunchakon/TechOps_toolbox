@@ -1,6 +1,7 @@
 # TechOps Toolbox
 
 Self-hosted, browser-only utilities for technical support, software engineering and DevOps troubleshooting. React + TypeScript + Vite, Tailwind CSS with shadcn/ui-style components, served by unprivileged Nginx in Docker. **No backend, no database, no external API calls.**
+<img width="1591" height="896" alt="image" src="https://github.com/user-attachments/assets/640b0110-158b-448c-8cab-6c25fdd562c5" />
 
 ## Features
 
