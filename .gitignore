@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.env
+# Deployment-specific list of external tools (may contain internal hostnames/IPs). Copy from custom-tools.example.json.
+config/custom-tools.json
+*.log
+.DS_Store

@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 12%;
+    --primary: 173 80% 26%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 222 30% 18%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 14% 38%;
+    --accent: 173 40% 92%;
+    --accent-foreground: 173 80% 18%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 70% 28%;
+    --warning: 32 90% 36%;
+    --border: 214 20% 87%;
+    --input: 214 20% 82%;
+    --ring: 173 80% 32%;
+    --radius: 0.6rem;
+  }
+  .dark {
+    --background: 222 28% 8%;
+    --foreground: 210 20% 94%;
+    --card: 222 26% 11%;
+    --card-foreground: 210 20% 94%;
+    --primary: 173 70% 42%;
+    --primary-foreground: 222 28% 6%;
+    --secondary: 222 20% 17%;
+    --secondary-foreground: 210 20% 92%;
+    --muted: 222 20% 17%;
+    --muted-foreground: 215 16% 68%;
+    --accent: 173 30% 18%;
+    --accent-foreground: 173 60% 80%;
+    --destructive: 0 70% 58%;
+    --destructive-foreground: 222 28% 6%;
+    --success: 142 55% 55%;
+    --warning: 38 90% 60%;
+    --border: 222 18% 22%;
+    --input: 222 18% 28%;
+    --ring: 173 70% 48%;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "sections": [
+    {
+      "title": "Internal apps",
+      "tools": [
+        {
+          "name": "Example app",
+          "description": "Replace with a link to one of your own applications.",
+          "url": "http://app.example.local:9001/",
+          "icon": "search"
+        }
+      ]
+    }
+  ]
+}

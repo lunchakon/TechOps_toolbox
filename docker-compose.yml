@@ -1,0 +1,36 @@
+name: techops-toolbox
+
+services:
+  techops-toolbox:
+    build:
+      context: .
+    image: techops-toolbox:1.0.0
+    container_name: techops-toolbox
+    restart: unless-stopped
+    ports:
+      # Default: reachable only from this machine at http://localhost:8088
+      # Override via .env: TECHOPS_PORT / TECHOPS_BIND (see README).
+      - "${TECHOPS_BIND:-127.0.0.1}:${TECHOPS_PORT:-8088}:8080"
+    volumes:
+      # Operator-managed list of external tools. Edit ./config/custom-tools.json and reload the page; no rebuild needed.
+      - ./config:/usr/share/nginx/html/config:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 100
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
