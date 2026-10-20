@@ -7,6 +7,7 @@ import { Base64Page } from '@/tools/base64/Base64Page'
 import { CronPage } from '@/tools/cron/CronPage'
 import { JsonXmlPage } from '@/tools/json-xml/JsonXmlPage'
 import { JwtPage } from '@/tools/jwt/JwtPage'
+import { PasswordPage } from '@/tools/password/PasswordPage'
 import { RegexPage } from '@/tools/regex/RegexPage'
 import { TimestampPage } from '@/tools/timestamp/TimestampPage'
 import { UrlPage } from '@/tools/url-encoder/UrlPage'
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="base64" element={<Base64Page />} />
         <Route path="url" element={<UrlPage />} />
         <Route path="jwt" element={<JwtPage />} />
+        <Route path="password" element={<PasswordPage />} />
         <Route path="cron" element={<CronPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

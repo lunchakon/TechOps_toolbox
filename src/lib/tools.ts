@@ -1,4 +1,4 @@
-import { Braces, Clock, FileCode2, KeyRound, Link2, CalendarClock, Regex, type LucideIcon } from 'lucide-react'
+import { Braces, Clock, Dices, FileCode2, KeyRound, Link2, CalendarClock, Regex, type LucideIcon } from 'lucide-react'
 
 export interface ToolMeta {
   id: string
@@ -57,6 +57,14 @@ export const TOOLS: ToolMeta[] = [
     short: 'JWT',
     description: 'Inspect JWT headers, claims and expiry locally. Signatures are not verified.',
     icon: KeyRound,
+  },
+  {
+    id: 'password',
+    path: '/password',
+    title: 'Password Generator',
+    short: 'Password',
+    description: 'Generate strong random passwords with a secure RNG. Nothing is stored or sent.',
+    icon: Dices,
   },
   {
     id: 'cron',

@@ -18,10 +18,10 @@ beforeEach(() => {
 })
 
 describe('navigation', () => {
-  it('shows a dashboard with a card for each of the seven tools', () => {
+  it('shows a dashboard with a card for each built-in tool', () => {
     renderAt('/')
     expect(screen.getByRole('heading', { level: 1, name: 'TechOps Toolbox' })).toBeInTheDocument()
-    expect(TOOLS).toHaveLength(7)
+    expect(TOOLS).toHaveLength(8)
     const main = screen.getByRole('main')
     for (const t of TOOLS) {
       expect(within(main).getByRole('link', { name: new RegExp(t.title, 'i') })).toHaveAttribute('href', t.path)
@@ -272,6 +272,53 @@ describe('Timestamp page: flags and multi-timezone comparison', () => {
     expect(within(table).getAllByRole('row')).toHaveLength(1 + 2 + 3) // header + UTC/Bangkok + three compared
     expect(within(table).getByText('Asia/Bangkok')).toBeInTheDocument()
     expect(within(table).getByText('UTC')).toBeInTheDocument()
+  })
+})
+
+describe('Password page', () => {
+  const current = () => screen.getAllByTestId('password').map((e) => e.textContent ?? '')
+
+  it('generates a password of the chosen length that changes on Generate', async () => {
+    const user = userEvent.setup()
+    renderAt('/password')
+    const first = current()
+    expect(first).toHaveLength(1)
+    expect(first[0]).toHaveLength(16)
+    await user.click(screen.getByRole('button', { name: /Generate/ }))
+    expect(current()[0]).not.toBe(first[0])
+  })
+
+  it('respects length and character type options', async () => {
+    const user = userEvent.setup()
+    renderAt('/password')
+    for (const label of [/Uppercase/, /Lowercase/, /Symbols/]) await user.click(screen.getByRole('checkbox', { name: label }))
+    const len = screen.getByRole('spinbutton', { name: 'Length (number)' })
+    await user.clear(len)
+    await user.type(len, '24')
+    expect(current()[0]).toMatch(/^\d{24}$/)
+  })
+
+  it('generates several passwords at once', async () => {
+    const user = userEvent.setup()
+    renderAt('/password')
+    await user.selectOptions(screen.getByLabelText('How many passwords'), '10')
+    expect(current()).toHaveLength(10)
+    expect(new Set(current()).size).toBe(10)
+  })
+
+  it('explains the problem when no character type is selected, and can hide passwords', async () => {
+    const user = userEvent.setup()
+    renderAt('/password')
+    await user.click(screen.getByRole('button', { name: /Hide/ }))
+    expect(current()[0]).toMatch(/^•{16}$/)
+    for (const label of [/Uppercase/, /Lowercase/, /Digits/, /Symbols/]) await user.click(screen.getByRole('checkbox', { name: label }))
+    expect(screen.getByRole('alert')).toHaveTextContent('Select at least one character type.')
+  })
+
+  it('never persists generated passwords', async () => {
+    renderAt('/password')
+    expect(localStorage.length).toBe(0)
+    expect(sessionStorage.length).toBe(0)
   })
 })
 

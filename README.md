@@ -13,6 +13,7 @@ Self-hosted, browser-only utilities for technical support, software engineering 
 | Base64 | `/base64` | UTF-8 encode/decode, URL-safe variant, malformed-input validation, swap |
 | URL Encoder | `/url` | Component / full-URL / form (`+` for space) modes, query-parameter table, explanations of malformed `%` escapes |
 | JWT Decoder | `/jwt` | Header, payload, `iat` `exp` `nbf` `iss` `sub` `aud`, expiry countdown. **Does not verify signatures** |
+| Password Generator | `/password` | Random passwords (4–128 chars) from the browser's secure RNG (`crypto.getRandomValues`, unbiased); choose upper/lower/digits/symbols, avoid look-alikes, generate up to 20 at once, entropy and strength estimate. Passwords are never stored, logged or sent |
 | Cron Visualizer | `/cron` | 5-field Unix cron validation, plain-English text, field breakdown, next 10 runs in any timezone with DST handling, presets |
 
 Also: dashboard, responsive sidebar / mobile menu, light/dark/system theme, keyboard-accessible controls, skip link.
